@@ -50,12 +50,12 @@ class MuTorere < Gosu::Window
     @current_player = nil
     @input = nil
     @ai = AI.new(
-      AlphaBeta2,
+      HillClimbing,
       MaximizePlays,
       'A'
     )
     @ai2 = AI.new(
-      MinMax2,
+      AlphaBeta2,
       MaximizePlays,
       'B'
     )
@@ -99,8 +99,6 @@ class MuTorere < Gosu::Window
       puts "1 saved"
       @ai2.tool.save_data
       puts "2 saved"
-      sleep (5)
-      close
     end
   end
 
@@ -125,6 +123,7 @@ class MuTorere < Gosu::Window
     if @lost
       show_state("Player #{@current_player} lost the game")
       @game_over.draw("GAME OVER", 400, 15, 0, 2.0, 2.0, 0xff_000000)
+
     elsif @bad_piece
       show_state("You can't move that piece")
     else
@@ -140,6 +139,11 @@ class MuTorere < Gosu::Window
   end
 
   def update
+    if @lost
+      sleep (5)
+      close
+    end
+
     if button_down? Gosu::Button::KbNumpad1
       num = 1
     elsif button_down? Gosu::Button::KbNumpad2
