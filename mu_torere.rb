@@ -121,7 +121,7 @@ class MuTorere < Gosu::Window
     @Position9.draw("9", 310, 304, 0, 1.0, 1.0, 0xff_000000)    
 
     if @lost
-      show_state("Player #{@current_player} lost the game")
+      show_state("Player #{@current_player} win the game")
       @game_over.draw("GAME OVER", 400, 15, 0, 2.0, 2.0, 0xff_000000)
 
     elsif @bad_piece
