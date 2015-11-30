@@ -65,7 +65,7 @@ class MuTorere < Gosu::Window
     @current_player = @current_player == 'A' ? 'B' : 'A'
   end
 
-  def move(input = nil)
+  def move(input = nil) #pion bouge à la fin
     if !@lost
       @num += 1 # Trace
       p @num # Trace
@@ -89,6 +89,10 @@ class MuTorere < Gosu::Window
     @bad_piece = false
     sleep(0.5)
     return true
+    if @lost
+      sleep (5)
+      close
+    end
   end
 
   def lost?
@@ -104,7 +108,11 @@ class MuTorere < Gosu::Window
 
 # ------------------------------------------------------------------  Gosu
   def show_state(string)
-      @player.draw(string, 10, 30, 0, 1.0, 1.0, 0xff_ff0000)
+      if @current_player == 'A'
+        @player.draw(string, 10, 30, 0, 1.0, 1.0, 0xff_ff0000)
+      else
+        @player.draw(string, 10, 30, 0, 1.0, 1.0, 0xff_ff7700)
+      end
   end
   
   def draw
@@ -163,8 +171,8 @@ class MuTorere < Gosu::Window
     elsif button_down? Gosu::Button::KbNumpad9
       num = 9
     end
-    if !lost?
-      next_player if move(num)
+    if !lost? && move(num)
+      next_player 
     end
   end
 

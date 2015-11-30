@@ -3,9 +3,9 @@ class MinMax2
   # Here we are creating the next nodes, which are function
   # of the number of playable pieces
   def self.build_next_board_states(node,
-    depth = 14,
-    alpha = -Float::INFINITY,
-    beta = Float::INFINITY,
+    depth = 12,
+    max = -Float::INFINITY,
+    min = Float::INFINITY,
     max_node_bool = true
     )
 
@@ -15,8 +15,8 @@ class MinMax2
     new_node = nil
     player = node.current_player
     ennemy = MT_Tools.get_ennemy(node.current_player)
-    max = max 
-    min = min 
+    max = max # max
+    min = min # min
     depth = depth
 
     # ------------ Stop if someone has won on this node ------------------
@@ -65,6 +65,9 @@ class MinMax2
         #puts "#{'  '*(5-depth)}Out of recursive call at depth : #{depth}, value : #{new_node.heuristic_value}, alpha : #{alpha}, beta : #{beta}"
         end
 
+        # Shortening lines
+        nnhv = new_node.heuristic_value
+
         #- If the last node created, recursively or not, is the
         #- father node's first son, bind it to him as its son -
         if !node.son
@@ -83,6 +86,19 @@ class MinMax2
         # --- Second, set the value to return at the max or min
         # between the alpha or beta and the new node heuristic
         # value -----------------------------------------------
+        if max_node_bool
+          max = [max, nnhv].max
+          value_to_return = [
+            value_to_return,
+            nnhv
+          ].max
+        else
+          min = [min, nnhv].min
+          value_to_return = [
+            value_to_return,
+            nnhv
+          ].min
+        end
       end
     end
     return value_to_return

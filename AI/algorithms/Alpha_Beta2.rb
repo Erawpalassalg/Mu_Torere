@@ -3,7 +3,7 @@ class AlphaBeta2
   # Here we are creating the next nodes, which are function
   # of the number of playable pieces
   def self.build_next_board_states(node,
-    depth = 26,
+    depth = 12,
     alpha = -Float::INFINITY,
     beta = Float::INFINITY,
     max_node_bool = true

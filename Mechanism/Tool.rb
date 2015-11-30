@@ -18,9 +18,8 @@ class Tool
   end
 
   def average_time(diff)
-    @weight_time_to_move = @weight_time_to_move + 1
     @average_time_to_move = (@average_time_to_move * @weight_time_to_move + diff) / (@weight_time_to_move + 1)
-
+    @weight_time_to_move = @weight_time_to_move + 1
   end
 
   def  average_node(node)

@@ -1,5 +1,5 @@
-#encoding: UTF-8
-
+require 'benchmark'
+include Benchmark
 require_relative './tree/node'
 require_relative '../Mechanism/mt_tools'
 require_relative '../Mechanism/Tool'
@@ -16,12 +16,16 @@ class AI
 
         def play(board)
                 node = Node.new(nil, nil, board, heuristic, @player, nil, @player)
-                @algo.build_next_board_states(node)
                 
-                start = Time.now  #TODO erase
+                
+                move = nil
+                diff = Benchmark.realtime(){
+                        @algo.build_next_board_states(node)
+                        
+                }
+                
                 move = @algo.search_best_move(node)
-                fin = Time.now  #TODO erase
-                @tool.average_time(fin - start) #TODO erase
+                @tool.average_time(diff) #TODO erase
                 @tool.average_node(node)  #TODO erase
                 
                 board.move(move)
