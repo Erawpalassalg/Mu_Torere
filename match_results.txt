@@ -30,3 +30,6 @@ HillClimbing-MaximizePlays vs MinMax2-MaximizeHeterogeneity: Win HillClimbing-Ma
 HillClimbing-MaximizePlays vs MinMax2-MaximizeHeterogeneity: Win HillClimbing-MaximizePlays
 HillClimbing-MaximizePlays vs MinMax2-MaximizeHeterogeneity: Win HillClimbing-MaximizePlays
 HillClimbing-MaximizePlays vs MinMax2-MaximizeHeterogeneity: Win HillClimbing-MaximizePlays
+HillClimbing-MaximizePlays vs MinMax2-MaximizeHeterogeneity: Win HillClimbing-MaximizePlays
+HillClimbing-MaximizePlays vs MinMax2-MaximizeHeterogeneity: Win HillClimbing-MaximizePlays
+HillClimbing-MaximizePlays vs MinMax2-MaximizeHeterogeneity: Win HillClimbing-MaximizePlays
