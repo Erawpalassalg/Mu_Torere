@@ -21,10 +21,10 @@ class AI
                 move = nil
                 diff = Benchmark.realtime(){
                         @algo.build_next_board_states(node)
-                        
+                        move = @algo.search_best_move(node)
                 }
                 
-                move = @algo.search_best_move(node)
+                
                 @tool.average_time(diff) #TODO erase
                 @tool.average_node(node)  #TODO erase
                 

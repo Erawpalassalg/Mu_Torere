@@ -50,13 +50,13 @@ class MuTorere < Gosu::Window
     @current_player = nil
     @input = nil
     @ai = AI.new(
-      HillClimbing,
+      MinMax2,
       MaximizePlays,
       'A'
     )
     @ai2 = AI.new(
-      AlphaBeta2,
-      MaximizePlays,
+      MinMax2,
+      MaximizeHeterogeneity,
       'B'
     )
   end
