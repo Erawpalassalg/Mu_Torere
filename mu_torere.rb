@@ -50,13 +50,13 @@ class MuTorere < Gosu::Window
     @current_player = nil
     @input = nil
     @ai = AI.new(
-      MinMax2,
+      HillClimbing,
       MaximizePlays,
       'A'
     )
     @ai2 = AI.new(
-      MinMax2,
-      MaximizeHeterogeneity,
+      AlphaBeta,
+      DifferenceAroundEmptySpot,
       'B'
     )
   end
@@ -66,13 +66,13 @@ class MuTorere < Gosu::Window
   end
 
   def move(input = nil) #pion bouge à la fin
-    if !@lost
-      @num += 1 # Trace
-      p @num # Trace
-    end
-    if @num > 45
-      close
-    end
+    # if !@lost
+      # @num += 1 # Trace
+      # p @num # Trace
+    # end
+    # if @num > 45
+      # close
+    # end
     if @current_player == @ai.player
       @ai.play(@game_board)if !@game_board.lost?(@current_player)
     elsif @current_player == @ai2.player

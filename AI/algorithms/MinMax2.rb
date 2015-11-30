@@ -3,7 +3,7 @@ class MinMax2
   # Here we are creating the next nodes, which are function
   # of the number of playable pieces
   def self.build_next_board_states(node,
-    depth = 20,
+    depth = 12,
     max = -Float::INFINITY,
     min = Float::INFINITY,
     max_node_bool = true

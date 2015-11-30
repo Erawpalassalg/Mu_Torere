@@ -26,7 +26,7 @@ class AI
                 
                 
                 @tool.average_time(diff) #TODO erase
-                @tool.average_node(node)  #TODO erase
+                #@tool.average_node(node)  #TODO erase
                 
                 board.move(move)
         end
