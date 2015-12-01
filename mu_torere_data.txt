@@ -1,2 +1,0 @@
-name:HillClimbing_MaximizePlays:time_to_move:t_average:0.00014106259623076768:t_weight:5:number_of_node:n_average:2:n_weight:5:
-name:MinMax2_MaximizeHeterogeneity:time_to_move:t_average:0.000564051755645778:t_weight:4:number_of_node:n_average:4:n_weight:4:

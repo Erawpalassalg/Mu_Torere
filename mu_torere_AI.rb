@@ -17,7 +17,7 @@ end
 recursive_require('./AI')
 recursive_require('./Mechanism')
 
-class MuTorere < Gosu::Window
+class MuTorere_AI < Gosu::Window
   attr_reader :game_board, :lost, :current_player
 
   def initialize
@@ -28,15 +28,7 @@ class MuTorere < Gosu::Window
     @Score = Gosu::Font.new(20)
     @ScoreUpdate = "Rouge : 0 / 0 : Jaune"
     @background_image = Gosu::Image.new("media/plateau.jpg", :tileable => true)
-    @Position1 = Gosu::Font.new(20)
-    @Position2 = Gosu::Font.new(20)
-    @Position3 = Gosu::Font.new(20)
-    @Position4 = Gosu::Font.new(20)
-    @Position5 = Gosu::Font.new(20)
-    @Position6 = Gosu::Font.new(20)
-    @Position7 = Gosu::Font.new(20)
-    @Position8 = Gosu::Font.new(20)
-    @Position9 = Gosu::Font.new(20)
+    @Position1 = @Position2 = @Position3 = @Position4 = @Position5 = @Position6 = @Position7 = @Position8 = @Position9 = Gosu::Font.new(20)
     @player = Gosu::Font.new(20)
     @game_over = Gosu::Font.new(20)
     @red_piece = Gosu::Image.new("media/pion/circle-red.png")
@@ -55,7 +47,7 @@ class MuTorere < Gosu::Window
       'A'
     )
     @ai2 = AI.new(
-      MinMax2,
+      MinMax,
       MaximizeHeterogeneity,
       'B'
     )
@@ -77,22 +69,10 @@ class MuTorere < Gosu::Window
       @ai.play(@game_board)if !@game_board.lost?(@current_player)
     elsif @current_player == @ai2.player
       @ai2.play(@game_board)if !@game_board.lost?(@current_player)
-    else
-      if !input
-        return false
-      elsif !@game_board.can_be_moved(input, @current_player)
-        @bad_piece = true
-        return false
-      end
-      @game_board.move(input)
     end
     @bad_piece = false
     sleep(0.5)
     return true
-    if @lost
-      sleep (5)
-      close
-    end
   end
 
   def lost?
@@ -131,7 +111,6 @@ class MuTorere < Gosu::Window
     if @lost
       show_state("Player #{@current_player} win the game")
       @game_over.draw("GAME OVER", 400, 15, 0, 2.0, 2.0, 0xff_000000)
-
     elsif @bad_piece
       show_state("You can't move that piece")
     else
@@ -196,6 +175,6 @@ class MuTorere < Gosu::Window
   end
 end
 
-game = MuTorere.new
+game = MuTorere_AI.new
 game.next_player
 game.show
