@@ -54,11 +54,11 @@ class MuTorere < Gosu::Window
       MaximizePlays,
       'A'
     )
-    @ai2 = AI.new(
-      MinMax2,
-      MaximizePlays,
-      'B'
-    )
+    #@ai2 = AI.new(
+      #MinMax2,
+      #MaximizePlays,
+      #'B'
+    #)
   end
 
   def next_player
@@ -66,16 +66,9 @@ class MuTorere < Gosu::Window
   end
 
   def move(input = nil)
-    if !@lost
-      @num += 1 # Trace
-      p @num # Trace
-    end
-    if @num > 45
-      close
-    end
-    if @current_player == @ai.player
+    if @ai && @current_player == @ai.player
       @ai.play(@game_board)if !@game_board.lost?(@current_player)
-    elsif @current_player == @ai2.player
+    elsif @ai2 && @current_player == @ai2.player
       @ai2.play(@game_board)if !@game_board.lost?(@current_player)
     else
       if !input
@@ -84,7 +77,7 @@ class MuTorere < Gosu::Window
         @bad_piece = true
         return false
       end
-      @game_board.move(input)
+        @game_board.move(input)
     end
     @bad_piece = false
     sleep(0.5)
@@ -95,11 +88,15 @@ class MuTorere < Gosu::Window
     if @game_board.lost?(@current_player)
       @lost = true
       MT_Tools.save_match(@ai, @ai2, @current_player)
-      @ai.tool.save_data
-      puts "1 saved"
-      @ai2.tool.save_data
-      puts "2 saved"
-      sleep (5)
+      if @ai
+        @ai.tool.save_data
+        puts "1 saved"
+      end
+      if @ai2
+        @ai2.tool.save_data
+        puts "2 saved"
+      end
+      sleep (2)
       close
     end
   end
